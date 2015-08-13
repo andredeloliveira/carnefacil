@@ -1,10 +1,25 @@
 <section data-ng-controller="ParcelasController" data-ng-init="findOne()">
 	<div class="page-header">
-		<h1 data-ng-bind="parcela.name"></h1>
+	<h1> Código Carnê</h1>
+		<h2 data-ng-bind="parcela.carne._id"></h2>
+	</div>
+	<div class="panel panel-default">
+		<div class="panel-heading">Informações</div>
+		<div class="panel-body">
+		<ul>
+			<li><span class="label label-default">Código Carnê</span> {{parcela.carne._id}}</li>
+			<li><span class="label label-default">Data Emissão</span> {{parcela.created | date}}</li>
+			<li><span class="label label-default">Data Vencimento</span> {{parcela.dataVencimento | date}}</li>
+			<li><span class="label label-default">Valor</span> {{parcela.valor}}</li>
+			<li><span class="label label-default">Taxa de Juros</span> {{parcela.taxaJuros}}</li>
+			<li><span class="label label-default">Status:</span> {{parcela.isPaga}}</li>
+
+		</ul>
+		</div>
 	</div>
 	<div class="pull-right" data-ng-show="((authentication.user) && (authentication.user._id == parcela.user._id))">
 		<a class="btn btn-primary" href="/#!/parcelas/{{parcela._id}}/edit">
-			<i class="glyphicon glyphicon-edit"></i>
+			<i class="glyphicon glyphicon-ok"></i>
 		</a>
 		<a class="btn btn-primary" data-ng-click="remove();">
 			<i class="glyphicon glyphicon-trash"></i>
@@ -12,9 +27,9 @@
 	</div>
 	<small>
 		<em class="text-muted">
-			Posted on
+			Criada em:
 			<span data-ng-bind="parcela.created | date:'mediumDate'"></span>
-			by
+			por: 
 			<span data-ng-bind="parcela.user.displayName"></span>
 		</em>
 	</small>

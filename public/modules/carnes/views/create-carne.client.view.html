@@ -1,18 +1,36 @@
 <section data-ng-controller="CarnesController">
     <div class="page-header">
-        <h1>New Carne</h1>
+        <h1>Novo Carnê</h1>
     </div>
     <div class="col-md-12">
         <form class="form-horizontal" data-ng-submit="create()" novalidate>
             <fieldset>
                 <div class="form-group">
-                    <label class="control-label" for="name">Name</label>
+                    <label class="control-label" for="clientes">Cliente</label>
                     <div class="controls">
-                        <input type="text" data-ng-model="name" id="name" class="form-control" placeholder="Name" required>
+                        <select class="form-control" ng-options="item.name for item in clientes" ng-model="cliente"></select>
                     </div>
                 </div>
                 <div class="form-group">
-                    <input type="submit" class="btn btn-default">
+                    <label class="control-label" for="nparcelas">Número de Parcelas</label>
+                    <div class="controls">
+                         <input type="number" min="1" max="72" data-ng-model="nparcelas" id="nparcelas" class="form-control"  required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="dataVencimento">Dia do Vencimento</label>
+                    <div class="controls">
+                         <input type="number" min="1" max="28" data-ng-model="dataVencimento" id="dataVencimento" class="form-control"  required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="total">Total da dívida</label>
+                    <div class="controls">
+                         <input type="text" data-ng-model="total" id="total" class="form-control"  required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Salvar Carnê" class="btn btn-primary">  
                 </div>
 				<div data-ng-show="error" class="text-danger">
 					<strong data-ng-bind="error"></strong>

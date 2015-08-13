@@ -2,6 +2,22 @@
 	<div class="page-header">
 		<h1 data-ng-bind="cliente.name"></h1>
 	</div>
+	<div class="panel panel-default">
+		<div class="panel-heading">Informações</div>
+		<div class="panel-body">
+		<ul>
+			<li><span class="label label-default">Endereco</span> {{cliente.endereco}}</li>
+			<li><span class="label label-default">CPF</span> {{cliente.cpf}}</li>
+			<li><span class="label label-default">RG</span> {{cliente.rg}}</li>
+			<li><span class="label label-default">Telefone</span>{{cliente.telefones[0]}}</li>
+			<li><span class="label label-default">Celular</span>{{cliente.telefones[1]}}</li>
+
+		</ul>
+		</div>
+	</div>
+	<div>
+
+	</div>
 	<div class="pull-right" data-ng-show="((authentication.user) && (authentication.user._id == cliente.user._id))">
 		<a class="btn btn-primary" href="/#!/clientes/{{cliente._id}}/edit">
 			<i class="glyphicon glyphicon-edit"></i>

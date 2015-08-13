@@ -73,7 +73,8 @@ exports.delete = function(req, res) {
  * List of Parcelas
  */
 exports.list = function(req, res) { 
-	Parcela.find().sort('-created').populate('user', 'displayName').exec(function(err, parcelas) {
+	
+	Parcela.find().sort('-created').populate('carne').exec(function(err, parcelas) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
@@ -88,10 +89,19 @@ exports.list = function(req, res) {
  * Parcela middleware
  */
 exports.parcelaByID = function(req, res, next, id) { 
-	Parcela.findById(id).populate('user', 'displayName').exec(function(err, parcela) {
+	/*Parcela.findById(id).populate('user','carne').exec(function(err, parcela) {
 		if (err) return next(err);
 		if (! parcela) return next(new Error('Failed to load Parcela ' + id));
 		req.parcela = parcela ;
+		next();
+	});*/
+	var x = Parcela.findById(id);
+	x.populate('user');
+	x.populate('carne');
+	x.exec(function(err,parcela){
+		if(err) return next(err);
+		if(! parcela) return next(new Error('Failed to load Parcela' + id));
+		req.parcela = parcela;
 		next();
 	});
 };

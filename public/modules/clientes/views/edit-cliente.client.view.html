@@ -6,13 +6,31 @@
         <form class="form-horizontal" data-ng-submit="update()" novalidate>
             <fieldset>
                 <div class="form-group">
-                    <label class="control-label" for="name">Name</label>
+                    <label class="control-label" for="name">Nome</label>
                     <div class="controls">
-                        <input type="text" data-ng-model="cliente.name" id="name" class="form-control" placeholder="Name" required>
+                        <input type="text" data-ng-model="cliente.name" id="name" class="form-control" placeholder="Nome" required>
                     </div>
                 </div>
                 <div class="form-group">
-                    <input type="submit" value="Update" class="btn btn-default">
+                    <label class="control-label" for="name">Endereço</label>
+                    <div class="controls">
+                        <input type="text" data-ng-model="cliente.endereco" id="endereco" class="form-control" placeholder="Endereço" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="name">CPF</label>
+                    <div class="controls">
+                        <input type="text" data-ng-model="cliente.cpf" id="cpf" class="form-control" placeholder="CPF" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="name">RG</label>
+                    <div class="controls">
+                        <input type="text" data-ng-model="cliente.rg" id="rg" class="form-control" placeholder="RG" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Atualizar" class="btn btn-default">
                 </div>
 				<div data-ng-show="error" class="text-danger">
 					<strong data-ng-bind="error"></strong>

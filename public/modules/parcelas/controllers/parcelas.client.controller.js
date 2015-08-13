@@ -1,10 +1,11 @@
 'use strict';
 
 // Parcelas controller
-angular.module('parcelas').controller('ParcelasController', ['$scope', '$stateParams', '$location', 'Authentication', 'Parcelas',
-	function($scope, $stateParams, $location, Authentication, Parcelas) {
+angular.module('parcelas').controller('ParcelasController', ['$scope', '$stateParams', '$location', 'Authentication', 'Parcelas','Carnes','Clientes',
+	function($scope, $stateParams, $location, Authentication, Parcelas, Carnes, Clientes) {
 		$scope.authentication = Authentication;
-
+		$scope.newValor = 0;
+		
 		// Create new Parcela
 		$scope.create = function() {
 			// Create new Parcela object
@@ -42,8 +43,23 @@ angular.module('parcelas').controller('ParcelasController', ['$scope', '$statePa
 
 		// Update existing Parcela
 		$scope.update = function() {
+			//before updating physically, first it will gather the data from the forms
 			var parcela = $scope.parcela;
+			
+			/*
+				* for the valor field that must be updated using taxaJuros to calculate the new value of the parcela
+			*/
 
+			var oldValor = $scope.parcela.valor;
+			var newValor = (oldValor * $scope.parcela.taxaJuros) / 100;
+			console.log('novo valor '+newValor);
+			parcela.valor = oldValor + newValor;
+			if($scope.isPaga === 0){
+				parcela.isPaga = false;
+			}else{
+				$scope.isPaga = true;
+			}
+			console.log(parcela);
 			parcela.$update(function() {
 				$location.path('parcelas/' + parcela._id);
 			}, function(errorResponse) {
@@ -61,6 +77,15 @@ angular.module('parcelas').controller('ParcelasController', ['$scope', '$statePa
 			$scope.parcela = Parcelas.get({ 
 				parcelaId: $stateParams.parcelaId
 			});
+			console.log($scope.parcela);
+			
+			
 		};
+
+		$scope.filterFunction = function(parcela){
+			return parcela.isPaga === false;
+		};
+
+		
 	}
 ]);

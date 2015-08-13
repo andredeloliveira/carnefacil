@@ -1,18 +1,41 @@
 <section data-ng-controller="ParcelasController" data-ng-init="findOne()">
     <div class="page-header">
-        <h1>Edit Parcela</h1>
+        <h1>Pagar Parcela</h1>
+        <h3>Aqui nessa seção, você poderá <b>pagar</b> a parcela do cliente. Uma taxa de juros pode ser incluída à cada uma das parcelas individualmente. A taxa será aplicada em porcentagem (%), ou seja, cada uma das parcelas com juros terá seu valor original somado a porcentagem de juros( Ex. R$100,00 + 20% de juros = R$120,00)</h3>
     </div>
     <div class="col-md-12">
+        <h2>{{parcela.carne._id}}</h2>
         <form class="form-horizontal" data-ng-submit="update()" novalidate>
             <fieldset>
                 <div class="form-group">
-                    <label class="control-label" for="name">Name</label>
+                    <label class="control-label" for="taxaJuros">Taxa de Juros</label>
                     <div class="controls">
-                        <input type="text" data-ng-model="parcela.name" id="name" class="form-control" placeholder="Name" required>
+                        <input type="text" data-ng-model="parcela.taxaJuros" id="taxaJuros" class="form-control" placeholder="Taxa de Juros" required>
                     </div>
                 </div>
                 <div class="form-group">
-                    <input type="submit" value="Update" class="btn btn-default">
+                    <label class="control-label" for="valor">Valor</label>
+                    <div class="controls">
+                        <input type="text" data-ng-model="parcela.valor" id="valor" class="form-control" placeholder="Valor" disabled required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="newValor">Valor + Juros(%)</label>
+                    <div class="controls">
+                        <p class="form-control">{{((parcela.valor * parcela.taxaJuros) / 100) + parcela.valor}}</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="taxaJuros">Status de Pagamento</label>
+                    <div class="controls">
+                       <select class="form-control" ng-model="parcela.isPaga" convert-to-number>
+                            <option value="0">Não Pago</option>
+                            <option value="1">Pago</option>
+                       </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Pagar Parcela" class="btn btn-success">
                 </div>
 				<div data-ng-show="error" class="text-danger">
 					<strong data-ng-bind="error"></strong>

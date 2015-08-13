@@ -53,7 +53,7 @@ var ClienteSchema = new Schema({
 		required: 'O RG é obrigatório!'
 	},
 	telefones: {
-		type: [PhoneSchema]
+		type: [String]
 	}
 
 });

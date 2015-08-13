@@ -7,10 +7,18 @@ angular.module('clientes').controller('ClientesController', ['$scope', '$statePa
 
 		// Create new Cliente
 		$scope.create = function() {
+			
+
 			// Create new Cliente object
 			var cliente = new Clientes ({
-				name: this.name
+				name: this.name,
+				endereco: this.endereco,
+				cpf: this.cpf,
+				rg: this.rg,
+				telefones: []
+				//create a new instance for telefones in here (it might be tricky!)
 			});
+			cliente.telefones.push(this.telefone);
 
 			// Redirect after save
 			cliente.$save(function(response) {

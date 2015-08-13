@@ -3,17 +3,18 @@
         <h1>Parcelas</h1>
     </div>
     <div class="list-group">
-        <a data-ng-repeat="parcela in parcelas" data-ng-href="#!/parcelas/{{parcela._id}}" class="list-group-item">
+        <a data-ng-repeat="parcela in parcelas | filter: filterFunction" data-ng-href="#!/parcelas/{{parcela._id}}" class="list-group-item">
 			<small class="list-group-item-text">
 				Posted on
 				<span data-ng-bind="parcela.created | date:'medium'"></span>
 				by
 				<span data-ng-bind="parcela.user.displayName"></span>
 			</small>
-			<h4 class="list-group-item-heading" data-ng-bind="parcela.name"></h4>
+            <h3 class="list-group-item-heading">{{parcela.dataVencimento | date}}</h3>
+			<h4 class="list-group-item-heading" data-ng-bind="parcela.carne._id"></h4>
         </a>
     </div>
     <div class="alert alert-warning text-center" data-ng-hide="!parcelas.$resolved || parcelas.length">
-    	No Parcelas yet, why don't you <a href="/#!/parcelas/create">create one</a>?
+    	Nenhuma parcela a pagar. Caso queira criar novas, é necessário criar um carnê. <a href="/#!/carnes/create">Criar Carnê</a>?
     </div>
 </section>

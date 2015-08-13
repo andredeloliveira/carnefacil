@@ -14,7 +14,6 @@ var mongoose = require('mongoose'),
 exports.create = function(req, res) {
 	var carne = new Carne(req.body);
 	carne.user = req.user;
-
 	carne.save(function(err) {
 		if (err) {
 			return res.status(400).send({
@@ -73,7 +72,7 @@ exports.delete = function(req, res) {
  * List of Carnes
  */
 exports.list = function(req, res) { 
-	Carne.find().sort('-created').populate('user', 'displayName').exec(function(err, carnes) {
+	Carne.find().sort('-created').populate('cliente').exec(function(err, carnes) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
@@ -88,10 +87,19 @@ exports.list = function(req, res) {
  * Carne middleware
  */
 exports.carneByID = function(req, res, next, id) { 
-	Carne.findById(id).populate('user', 'displayName').exec(function(err, carne) {
+	/*Carne.findById(id).populate('user', 'displayName').exec(function(err, carne) {
 		if (err) return next(err);
 		if (! carne) return next(new Error('Failed to load Carne ' + id));
 		req.carne = carne ;
+		next();
+	});*/
+	var tempCarne = Carne.findById(id);
+	tempCarne.populate('user');
+	tempCarne.populate('cliente');
+	tempCarne.exec(function(err,carne){
+		if(err) return next(err);
+		if(! carne) return next(new Error('Failed to load Carne' + id));
+		req.carne = carne;
 		next();
 	});
 };

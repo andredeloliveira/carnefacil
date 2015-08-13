@@ -29,7 +29,11 @@ var ParcelaSchema = new Schema({
 	},
 	taxaJuros: {
 		type: Number,
-		default: 1.0
+		default: 0.0
+	},
+	isPaga: {
+		type: Boolean,
+		default: false
 	},
 	user: {
 		type: Schema.ObjectId,
