@@ -5,6 +5,8 @@ angular.module('parcelas').controller('ParcelasController', ['$scope', '$statePa
 	function($scope, $stateParams, $location, Authentication, Parcelas, Carnes, Clientes) {
 		$scope.authentication = Authentication;
 		$scope.newValor = 0;
+		$scope.auxParcelas = [];
+		$scope.showParcelasAll = 0;
 		
 		// Create new Parcela
 		$scope.create = function() {
@@ -86,6 +88,32 @@ angular.module('parcelas').controller('ParcelasController', ['$scope', '$statePa
 			return parcela.isPaga === false;
 		};
 
-		
+		/*Need to transform into a query statement. If I had billions of carnes it would be bad!*/
+		$scope.filterParcelasByCarne = function(idCarne){	
+			console.log('entered the damn function');
+			if(this.idCarne === ''){
+				$scope.showParcelasAll =0;
+			}	
+			for (var i = 0; i< $scope.parcelas.length; i++) {
+					if($scope.parcelas[i].carne._id === idCarne)
+						$scope.auxParcelas.push($scope.parcelas[i]);
+			}
+			if($scope.auxParcelas.length > 0){
+				$scope.showParcelasAll = 1;
+				this.idCarne = '';
+			}else{
+				$scope.showParcelasAll = 0;
+				this.idCarne ='';
+			}
+		};
+
+		$scope.showParcelas = function(number){
+			if(number === $scope.showParcelasAll){
+				return true;
+			}else{
+				return false;
+			}
+		};
+
 	}
 ]);

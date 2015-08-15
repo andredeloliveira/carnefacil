@@ -6,7 +6,8 @@ angular.module('carnes').controller('CarnesController', ['$scope', '$stateParams
 		$scope.authentication = Authentication;
 		$scope.clientes = Clientes.query();
 		$scope.parcelas = [];
-		$scope.teste = [];
+		$scope.parcelasImpressao = [];
+		$scope.showParcelas = 0;
 		//Create all the parcelas from a carne
 		$scope.createParcelas = function(id){
 			var valorParcelas = this.total / this.nparcelas;
@@ -17,10 +18,11 @@ angular.module('carnes').controller('CarnesController', ['$scope', '$stateParams
 					dataVencimento: dataAtual + 2.62974e9,
 					valor : valorParcelas
 				});
-				console.log(parcela);
 				dataAtual = dataAtual + 2.62974e9;
 				parcela.$save();
+				$scope.parcelasImpressao.push(parcela);
 			}
+			console.log($scope.parcelasImpressao);
 		};
 		// Create new Carne
 		$scope.create = function() {

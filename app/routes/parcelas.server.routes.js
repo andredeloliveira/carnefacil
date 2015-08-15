@@ -14,6 +14,7 @@ module.exports = function(app) {
 		.put(users.requiresLogin, parcelas.hasAuthorization, parcelas.update)
 		.delete(users.requiresLogin, parcelas.hasAuthorization, parcelas.delete);
 
+	
 	// Finish by binding the Parcela middleware
 	app.param('parcelaId', parcelas.parcelaByID);
 };

@@ -11,9 +11,32 @@
 			<li><span class="label label-default">Código Carnê</span> {{carne._id}}</li>
 			<li><span class="label label-default">Data Emissão</span> {{carne.created}}</li>
 			<li><span class="label label-default">Número Parcelas</span> {{carne.nparcelas}}</li>
-			<li><span class="label label-default">teste</span> {{teste}}</li>
+			<li><span class="label label-default">Nome do Cliente</span> {{carne.cliente.name}}</li>
+			<li><span class="label label-default">Total da Compra</span> {{carne.total}}</li>
 
 		</ul>
+		</div>
+		<div data-ng-repeat="parcela in parcelasImpressao">
+			<div class="panel panel-default">
+				<div class="panel-heading">Informações de Pagamento</div>
+				<div class="panel-body">
+					<div class="col-md-2">
+						<span class="label label-default">Código Parcela</span> {{parcela._id}}
+						<br>
+						<span class="label label-default">Nome Cliente</span> {{carne.cliente.name}}
+						<br>
+						<span class="label label-default">Vencimento</span> {{parcela.dataVencimento}}
+
+					</div>
+					<div class="col-md-6">
+						<span class="label label-default">Código Parcela</span> {{parcela._id}}
+						<br>
+						<span class="label label-default">Nome Cliente</span> {{carne.cliente.name}}
+						<br>
+						<span class="label label-default">Vencimento</span> {{parcela.dataVencimento}}
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 	<div class="pull-right" data-ng-show="((authentication.user) && (authentication.user._id == carne.user._id))">
