@@ -5,47 +5,61 @@
 		
 	</div>
 	<div class="panel panel-default">
-		<div class="panel-heading">Informações</div>
+		<div class="panel-heading">Informações do Carnê</div>
 		<div class="panel-body">
-		<ul>
+		<ul class="list-unstyled">
 			<li><span class="label label-default">Código Carnê</span> {{carne._id}}</li>
-			<li><span class="label label-default">Data Emissão</span> {{carne.created}}</li>
+			<li><span class="label label-default">Data Emissão</span> {{carne.created | date}}</li>
 			<li><span class="label label-default">Número Parcelas</span> {{carne.nparcelas}}</li>
 			<li><span class="label label-default">Nome do Cliente</span> {{carne.cliente.name}}</li>
-			<li><span class="label label-default">Total da Compra</span> {{carne.total}}</li>
+			<li><span class="label label-default">Total da Compra</span> {{carne.total | currency}}</li>
 
 		</ul>
 		</div>
-		<div data-ng-repeat="parcela in parcelasImpressao">
+	</div>
+	<h3>Parcelas</h3>
+		<div ng-repeat="parcela in parcelasCarne | filter: filtrarPorCarnes">
+			<a href="#!/parcelas/{{parcela._id}}" class="list-group-item">	
 			<div class="panel panel-default">
 				<div class="panel-heading">Informações de Pagamento</div>
 				<div class="panel-body">
-					<div class="col-md-2">
+					<div class="col-md-4">
+						<span class="label label-default">Código Carne</span> {{parcela.carne._id}}
+						<br>
 						<span class="label label-default">Código Parcela</span> {{parcela._id}}
 						<br>
 						<span class="label label-default">Nome Cliente</span> {{carne.cliente.name}}
 						<br>
-						<span class="label label-default">Vencimento</span> {{parcela.dataVencimento}}
-
+						<span class="label label-default">Vencimento</span> {{parcela.dataVencimento | date}}
+						<br>
+						<span class="label label-default">Valor Parcela</span> {{parcela.valor | currency}}
 					</div>
+					<hr>
 					<div class="col-md-6">
 						<span class="label label-default">Código Parcela</span> {{parcela._id}}
 						<br>
 						<span class="label label-default">Nome Cliente</span> {{carne.cliente.name}}
 						<br>
-						<span class="label label-default">Vencimento</span> {{parcela.dataVencimento}}
+						<span class="label label-default">Vencimento</span> {{parcela.dataVencimento | date}}
+						<br>
+						<span class="label label-default">Valor</span> {{parcela.valor | currency}}
+						<span class="label label-default">Juros</span>
+						<br> 
+						<span class="label label-default">Valor Total</span> 
+						<br>
 					</div>
 				</div>
+				<br>
 			</div>
+			</a>
 		</div>
-	</div>
+	
 	<div class="pull-right" data-ng-show="((authentication.user) && (authentication.user._id == carne.user._id))">
-		<a class="btn btn-primary" href="/#!/carnes/{{carne._id}}/edit">
-			<i class="glyphicon glyphicon-edit"></i>
-		</a>
+		
 		<a class="btn btn-primary" data-ng-click="remove();">
-			<i class="glyphicon glyphicon-trash"></i>
+			<i class="glyphicon glyphicon-trash"></i> Remover Carnê
 		</a>
+	
 	</div>
 	
 </section>

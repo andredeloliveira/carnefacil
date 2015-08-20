@@ -74,7 +74,7 @@ exports.delete = function(req, res) {
  */
 exports.list = function(req, res) { 
 	
-	Parcela.find().sort('-created').populate('carne').exec(function(err, parcelas) {
+	Parcela.find().sort('created').populate('carne').exec(function(err, parcelas) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)

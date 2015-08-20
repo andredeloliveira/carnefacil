@@ -12,9 +12,27 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label" for="endereco">Endereco</label>
+                <label class="control-label">Endereço</label>
+                </div>
+                <div class="col-md-6">
+                    <label class="control-label" for="rua">Rua</label>
                     <div class="controls">
-                        <input type="text" data-ng-model="endereco" id="endereco" class="form-control" placeholder="Endereço completo" required>
+                        <input type="text" data-ng-model="rua" id="rua" class="form-control" placeholder="Rua ">
+
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <label class="control-label" for="numero">Numero</label>
+                    <div class="controls">
+                        <input type="text" data-ng-model="numero" id="numero" class="form-control" placeholder="Numero">
+                        
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label class="control-label" for="complemento">Complemento</label>
+                    <div class="controls">
+                        <input type="text" data-ng-model="complemento" id="complemento" class="form-control" placeholder="Complemento">
+                        
                     </div>
                 </div>
                 <div class="form-group">
@@ -44,7 +62,7 @@
                 
                 
                 <div class="form-group">
-                    <input type="submit" class="btn btn-default">
+                    <input type="submit" value="Cadastrar" class="btn btn-primary">
                 </div>
 				<div data-ng-show="error" class="text-danger">
 					<strong data-ng-bind="error"></strong>

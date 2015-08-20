@@ -94,8 +94,11 @@ angular.module('parcelas').controller('ParcelasController', ['$scope', '$statePa
 			if(this.idCarne === ''){
 				$scope.showParcelasAll =0;
 			}	
+			if($scope.showParcelasAll.length > 0){
+				$scope.showParcelasAll = [];
+			}
 			for (var i = 0; i< $scope.parcelas.length; i++) {
-					if($scope.parcelas[i].carne._id === idCarne)
+					if($scope.parcelas[i]._id === idCarne)
 						$scope.auxParcelas.push($scope.parcelas[i]);
 			}
 			if($scope.auxParcelas.length > 0){
@@ -105,6 +108,7 @@ angular.module('parcelas').controller('ParcelasController', ['$scope', '$statePa
 				$scope.showParcelasAll = 0;
 				this.idCarne ='';
 			}
+			console.log($scope.auxParcelas);
 		};
 
 		$scope.showParcelas = function(number){
@@ -113,6 +117,10 @@ angular.module('parcelas').controller('ParcelasController', ['$scope', '$statePa
 			}else{
 				return false;
 			}
+		};
+
+		$scope.mostrarTodasAsParcelas = function(){
+			$scope.showParcelasAll = 0;
 		};
 
 	}
