@@ -28,27 +28,27 @@ Após essas dependencias serem instaladas, você precisará de alguns pacotes do
 
 1. bower (para instalar os sub-pacotes)
 
-´npm install -g bower´
+`npm install -g bower`
 
 2. grunt (para execução)
 
-´npm install -g grunt-cli´
+`npm install -g grunt-cli`
 
 ####Instalação:
 
 Primeiro será necessário clonar o repositório do git. Nesse caso:
 
-´git clone https://github.com/andredeloliveira/carnefacil.git carnefacil && cd carnefacil´
+`git clone https://github.com/andredeloliveira/carnefacil.git carnefacil && cd carnefacil`
 
 Para instalação rápida:
 
-´npm install´
+`npm install`
 
 ####Execução:
 
 Para executar, 
 
-´grunt´
+`grunt`
 
 ###Licença
 
