@@ -32,6 +32,8 @@
 						<br>
 						<span class="label label-default">Vencimento</span> {{parcela.dataVencimento | date}}
 						<br>
+						<span class="label label-default">Número Parcela</span> {{parcela.parcelaAtual}}
+						<br>
 						<span class="label label-default">Valor Parcela</span> {{parcela.valor | currency}}
 					</div>
 					<hr>
@@ -41,6 +43,8 @@
 						<span class="label label-default">Nome Cliente</span> {{carne.cliente.name}}
 						<br>
 						<span class="label label-default">Vencimento</span> {{parcela.dataVencimento | date}}
+						<br>
+						<span class="label label-default">Número Parcela</span> {{parcela.parcelaAtual}}
 						<br>
 						<span class="label label-default">Valor</span> {{parcela.valor | currency}}
 						<span class="label label-default">Juros</span>

@@ -49,16 +49,19 @@ angular.module('carnes').controller('CarnesController', ['$scope', '$stateParams
 		$scope.createParcelas = function(id){
 			var valorParcelas = this.total / this.nparcelas;
 			var dataAtual = Date.now();
+			var numParcelas = '12/12';
 			for(var i =1; i<= this.nparcelas; i++){
 				var parcela = new Parcelas({
 					carne: id,
 					dataVencimento: dataAtual + 2.62974e9,
+					parcelaAtual: i+'/'+this.nparcelas,
 					valor : valorParcelas
 				});
 				dataAtual = dataAtual + 2.62974e9;
 				parcela.$save();
+				console.log(parcela);
 			}
-			console.log($scope.parcelasImpressao);
+			
 		};
 		// Create new Carne
 		$scope.create = function() {

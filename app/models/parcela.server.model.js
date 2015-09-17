@@ -35,6 +35,11 @@ var ParcelaSchema = new Schema({
 		type: Boolean,
 		default: false
 	},
+	parcelaAtual:{
+		type:String,
+		default:'',
+		required:'é necessário para criar a parcela saber qual é a parcela referencial'
+	},
 	user: {
 		type: Schema.ObjectId,
 		ref: 'User'
